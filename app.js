@@ -1,35 +1,35 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 let amigos = [];
 
+//Permite agregar un nombre y los coloca en una lista.
 function agregarAmigo() {
     let amigoSecreto = document.getElementById("amigo").value;
-    console.log(amigoSecreto);
     if (amigoSecreto) {
         amigos.push(amigoSecreto);
         actualizarListaAmigos();
         document.getElementById("amigo").value = "";
-        console.log(amigos);
         limpiaCaja();
     } else {
+        //Valída que se ingrese un nombre y no dejarlo vacío.
         alert("Por favor, inserte un nombre.");
     }
     return;
 }
 
+//Limpia la caja después de agregar un nombre.
 function limpiaCaja() {
     document.querySelector("#amigo").value = "";
     return;
 }
 
+//Muestra los nombres agregados en pantalla
 function actualizarListaAmigos() {
     let lista = document.getElementById("listaAmigos");
     lista.innerHTML = "";
+    //Recorre la lista de nombres y crea los elementos "li" en html para mostrarlos
     for (i = 0; i < amigos.length; i++) {
         let nuevoElemento = document.createElement("li");
         nuevoElemento.innerHTML = amigos[i];
         lista.appendChild(nuevoElemento);
-        console.log(nuevoElemento);
-        //no debe ir return aquí, sino no funciona
     }
     return;
 }
@@ -38,19 +38,16 @@ function sortearAmigo() {
     let longitudArrayAmigos = amigos.length;
     amigoSorteado = Math.floor(Math.random()*longitudArrayAmigos);
     
-    console.log(longitudArrayAmigos);
-    console.log(amigoSorteado);
     if (longitudArrayAmigos != 0) {
-        //no se puede declar una variable aquí, debe ser despues de function.
-        alert(`En tu lista de amigos hay ${longitudArrayAmigos}`)
-        
-        console.log(amigoSorteado);
-        //Aquí en una variable, se asigna el elemento html con el cual se va a interactuar
+        //Selecciona el elemento en el cual se mostrara el nombre sorteado.
         let resultadoSorteo = document.getElementById('resultado');
-        //se le indica a la variable anterior que valor va asignarsele para que aparezca en el elemento html
+        //Asigna el valor del nombre sorteado en el elemento seleccionado anteriormente.
         resultadoSorteo.innerHTML = (`El amigo secreto sorteado es: ${amigos[amigoSorteado]}`);
+        //Limpia el listado de nombres que estaba mostrado en pantalla.
+        let lista = document.getElementById("listaAmigos");
+        lista.innerHTML = "";
     } else {
-        console.log('la lista de amigos esta vacía');
+        alert('La lista de amigos esta vacía. Por favor, ingrese un nombre');
     }
     return amigoSorteado;
 }
